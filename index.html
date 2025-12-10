@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تقدیم به ویدا</title>
+    <title>مقام والای مادر</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <style>
-        /* تنظیمات کلی صفحه */
+        /* تنظیمات کلی و پس زمینه لوکس */
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle at center, #4a0010, #000000); /* پس زمینه زرشکی به مشکی */
+            background: linear-gradient(135deg, #0f0a0a 0%, #3a1c1c 100%); /* گرادیانت تیره با ته رنگ زرشکی */
             color: #fff;
             font-family: 'Vazirmatn', sans-serif;
             height: 100vh;
@@ -18,124 +18,167 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* افکت نور محیطی (Glow) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulseGlow 8s infinite alternate;
+            z-index: -1;
         }
 
         /* کادر اصلی موبایل */
         .card-container {
             width: 90%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); /* افکت شیشه‌ای */
-            border: 1px solid rgba(255, 215, 0, 0.3); /* حاشیه طلایی کمرنگ */
-            border-radius: 20px;
-            padding: 40px 20px;
+            max-width: 450px;
+            background: rgba(10, 5, 5, 0.7);
+            border: 2px solid #FFD700; /* حاشیه طلایی پررنگ */
+            border-radius: 25px;
+            padding: 40px 25px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 0, 50, 0.3);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.4);
             position: relative;
-            animation: slideUp 1.5s ease-out;
+            opacity: 0;
+            animation: cardAppear 1s ease-out forwards;
         }
 
-        /* نام ویدا */
-        .name-title {
+        /* انیمیشن ظهور کارت */
+        @keyframes cardAppear {
+            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: scale(0.9); }
+        }
+
+        /* انیمیشن نور محیطی */
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
+        }
+
+        /* ----- بخش جدید: انیمیشن تغییر رنگ برای کلمه مادر ----- */
+        @keyframes rainbow-text {
+            0% { color: #FFD700; text-shadow: 0 0 15px #FFD700; }
+            20% { color: #ff007f; text-shadow: 0 0 15px #ff007f; } /* صورتی */
+            40% { color: #00ffaa; text-shadow: 0 0 15px #00ffaa; } /* فیروزه ای */
+            60% { color: #0099ff; text-shadow: 0 0 15px #0099ff; } /* آبی روشن */
+            80% { color: #ff5500; text-shadow: 0 0 15px #ff5500; } /* نارنجی */
+            100% { color: #FFD700; text-shadow: 0 0 15px #FFD700; } /* طلایی */
+        }
+        
+        /* عنوان اصلی (مادر) با افکت تغییر رنگ */
+        .main-title {
             font-size: 3.5em;
-            color: #FFD700; /* رنگ طلایی */
-            margin: 0;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            font-weight: bold;
-            letter-spacing: 2px;
+            margin: 15px 0 20px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: fadeIn 1s 1s forwards, rainbow-text 6s infinite ease-in-out;
+        }
+        /* ---------------------------------------------------- */
+
+        /* نماد تاج */
+        .symbol {
+            font-size: 4em;
+            color: #FFD700;
+            opacity: 0;
+            animation: fadeIn 0.8s 0.5s forwards;
         }
 
-        /* متن عاشقانه */
-        .message {
+        /* انیمیشن fadeIn عمومی */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* متن رسمی و قدردانی */
+        .message-container {
             font-size: 1.1em;
-            line-height: 1.8;
-            margin-top: 20px;
-            color: #e0e0e0;
+            line-height: 2;
+            margin-top: 30px;
+            color: #ccc;
             font-weight: 300;
+            text-align: justify;
+            text-align-last: center; /* برای توجیه در وسط */
         }
-
-        .highlight {
-            color: #ff4d6d; /* رنگ صورتی جیغ برای تاکید */
-            font-weight: bold;
-        }
-
-        /* قلب تپنده */
-        .heart {
-            font-size: 3em;
-            margin: 30px 0;
-            color: #ff0033;
-            animation: beat 1s infinite alternate;
+        
+        .message span {
+            opacity: 0;
+            animation: textFadeIn 0.5s forwards;
             display: inline-block;
+        }
+
+        /* انیمیشن ظهور کلمه به کلمه (Staggered Effect) */
+        @keyframes textFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px); }
+        }
+
+        .highlight-mother {
+            color: #ffffff;
+            font-weight: 700;
         }
 
         /* امضا */
         .footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #888;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
-        }
-
-        /* انیمیشن‌ها */
-        @keyframes beat {
-            to { transform: scale(1.2); text-shadow: 0 0 20px #ff0033; }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* ذرات معلق (ستاره‌ها) */
-        .particle {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 5s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            margin-top: 40px;
+            font-size: 0.95em;
+            color: #999;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255, 215, 0, 0.2);
+            opacity: 0;
+            animation: fadeIn 1s 6s forwards; /* آخرین چیزی که ظاهر می شود */
         }
 
     </style>
 </head>
 <body>
 
-    <div style="position: absolute; width: 100%; height: 100%; z-index: -1;">
-        <span class="particle" style="left: 10%; top: 80%; width: 3px; height: 3px; animation-duration: 4s;"></span>
-        <span class="particle" style="left: 30%; top: 90%; width: 5px; height: 5px; animation-duration: 6s;"></span>
-        <span class="particle" style="left: 70%; top: 70%; width: 2px; height: 2px; animation-duration: 3s;"></span>
-        <span class="particle" style="left: 90%; top: 85%; width: 4px; height: 4px; animation-duration: 5s;"></span>
-    </div>
-
     <div class="card-container">
-        <p style="font-size: 0.9em; letter-spacing: 3px; color: #aaa; margin-bottom: 5px;">عشق همیشگی من</p>
         
-        <h1 class="name-title">ویدا</h1>
+        <div class="symbol">👑</div>
+
+        <h1 class="main-title">مــــــادر</h1>
         
-        <div class="message">
-            می‌گویند دنیا جای سختی است،<br>
-            اما آن‌ها تو را ندارند.<br><br>
-            من خوشبخت‌ترین مردِ زمینم<br>
-            چون در دنیای من زنی نفس می‌کشد<br>
-            که نامش <strong>ویدا</strong> است<br>
-            و وجودش، خودِ <span class="highlight">"زندگی"</span>.
-        </div>
-
-        <div class="heart">❤️</div>
-
-        <div class="message">
-            تکیه‌گاه خستگی‌هایم<br>
-            روزت مبارک ملکه من.
+        <div class="message-container">
+            <div class="message">
+                <span style="animation-delay: 2s;">تنها</span>
+                <span style="animation-delay: 2.1s;">کلمه‌ای</span>
+                <span style="animation-delay: 2.2s;">که</span>
+                <span style="animation-delay: 2.3s;">عظمتش</span>
+                <span style="animation-delay: 2.4s;">در</span>
+                <span style="animation-delay: 2.5s;">هیچ</span>
+                <span style="animation-delay: 2.6s;">جمله‌ای</span>
+                <span style="animation-delay: 2.7s;">نمی‌گنجد.</span>
+                <br>
+                <span style="animation-delay: 3s;">برای</span>
+                <span style="animation-delay: 3.1s;">شما</span>
+                <span style="animation-delay: 3.2s;">که</span>
+                <span style="animation-delay: 3.3s;">دلیل</span>
+                <span style="animation-delay: 3.4s;">تمام</span>
+                <span class="highlight-mother" style="animation-delay: 3.7s;">آرامش</span>،
+                <span class="highlight-mother" style="animation-delay: 4.1s;">موفقیت</span>
+                <span style="animation-delay: 4.3s;">و</span>
+                <span class="highlight-mother" style="animation-delay: 4.5s;">لبخندهای</span>
+                <span style="animation-delay: 4.7s;">من</span>
+                <span style="animation-delay: 4.8s;">هستید.</span>
+                <br>
+                <span style="animation-delay: 5.2s;">وجودتان،</span>
+                <span style="animation-delay: 5.4s;">امن‌ترین</span>
+                <span style="animation-delay: 5.6s;">سقف</span>
+                <span style="animation-delay: 5.8s;">جهان</span>
+                <span style="animation-delay: 6s;">است.</span>
+            </div>
         </div>
 
         <div class="footer">
-            بمانی برایم تا ابد ♾️
+            روزتان، روز تمام خوبی‌ها مبارک باد.<br>
+            (با عشق و قدردانی ابدی)
         </div>
     </div>
 
