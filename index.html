@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقدیم به ویدا</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        /* تنظیمات کلی صفحه */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #4a0010, #000000); /* پس زمینه زرشکی به مشکی */
+            color: #fff;
+            font-family: 'Vazirmatn', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* کادر اصلی موبایل */
+        .card-container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px); /* افکت شیشه‌ای */
+            border: 1px solid rgba(255, 215, 0, 0.3); /* حاشیه طلایی کمرنگ */
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 50, 0.3);
+            position: relative;
+            animation: slideUp 1.5s ease-out;
+        }
+
+        /* نام ویدا */
+        .name-title {
+            font-size: 3.5em;
+            color: #FFD700; /* رنگ طلایی */
+            margin: 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* متن عاشقانه */
+        .message {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-top: 20px;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #ff4d6d; /* رنگ صورتی جیغ برای تاکید */
+            font-weight: bold;
+        }
+
+        /* قلب تپنده */
+        .heart {
+            font-size: 3em;
+            margin: 30px 0;
+            color: #ff0033;
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+
+        /* امضا */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes beat {
+            to { transform: scale(1.2); text-shadow: 0 0 20px #ff0033; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ذرات معلق (ستاره‌ها) */
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 5s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div style="position: absolute; width: 100%; height: 100%; z-index: -1;">
+        <span class="particle" style="left: 10%; top: 80%; width: 3px; height: 3px; animation-duration: 4s;"></span>
+        <span class="particle" style="left: 30%; top: 90%; width: 5px; height: 5px; animation-duration: 6s;"></span>
+        <span class="particle" style="left: 70%; top: 70%; width: 2px; height: 2px; animation-duration: 3s;"></span>
+        <span class="particle" style="left: 90%; top: 85%; width: 4px; height: 4px; animation-duration: 5s;"></span>
+    </div>
+
+    <div class="card-container">
+        <p style="font-size: 0.9em; letter-spacing: 3px; color: #aaa; margin-bottom: 5px;">عشق همیشگی من</p>
+        
+        <h1 class="name-title">ویدا</h1>
+        
+        <div class="message">
+            می‌گویند دنیا جای سختی است،<br>
+            اما آن‌ها تو را ندارند.<br><br>
+            من خوشبخت‌ترین مردِ زمینم<br>
+            چون در دنیای من زنی نفس می‌کشد<br>
+            که نامش <strong>ویدا</strong> است<br>
+            و وجودش، خودِ <span class="highlight">"زندگی"</span>.
+        </div>
+
+        <div class="heart">❤️</div>
+
+        <div class="message">
+            تکیه‌گاه خستگی‌هایم<br>
+            روزت مبارک ملکه من.
+        </div>
+
+        <div class="footer">
+            بمانی برایم تا ابد ♾️
+        </div>
+    </div>
+
+</body>
+</html>
